@@ -1,8 +1,33 @@
-function mincost(arr)
-{ 
-//write your code here
-// return the min cost
-  
+function mincost(arr) {
+   
+    const MinHeap = require('minheap');
+
+    const heap = new MinHeap();
+    
+    
+    for (const length of arr) {
+        heap.insert(length);
+    }
+
+    let totalCost = 0;
+
+    
+    while (heap.size() > 1) {
+     
+        const first = heap.removeMin();
+        const second = heap.removeMin();
+
+       
+        const cost = first + second;
+
+     
+        totalCost += cost;
+
+        
+        heap.insert(cost);
+    }
+
+    return totalCost;
 }
 
-module.exports=mincost;
+module.exports = mincost;
