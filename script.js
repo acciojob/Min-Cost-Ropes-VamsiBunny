@@ -1,22 +1,23 @@
 const MinHeap = require('minheap');
 
 function mincost(arr) {
-    const heap = new MinHeap();
-    
-    for (const length of arr) {
-        heap.insert(length);
-    }
+   
+    arr.sort((a,b)=>a-b)
+
+  
 
     let totalCost = 0;
 
-    while (heap.size() > 1) {
-        const first = heap.removeMin();
-        const second = heap.removeMin();
-
+    while (arr.length > 1) {
+        const first = arr[0];
+        const second = arr[1];
+        arr.shift()
+		arr.shift()
         const cost = first + second;
         totalCost += cost;
 
-        heap.insert(cost);
+       arr.push(cost);
+	  arr.sort((a,b)=>a-b)
     }
 
     return totalCost;
